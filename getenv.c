@@ -1,7 +1,8 @@
 #include "main.h"
 /**
  * get_env - handles the environment
- */
+ *
+ **/
 void get_env(void)
 {
 	char **environment = environ;
@@ -11,4 +12,5 @@ void get_env(void)
 		printf("%s\n", *environment);
 		environment++;
 	}
+
 }

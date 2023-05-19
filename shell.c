@@ -17,12 +17,12 @@ int main(int argc, char **argv)
 	int status;
 	int i = 1;
 	char *args[MAX_ARGS] = {NULL};
-	int isstdfile = !isatty(fileno(stdin));
+	int is_file = !isatty(fileno(stdin));
 	(void)argc;
 
 	while (1)
 	{
-		if (!isstdfile)
+		if (!is_file)
 		{
 			printf("%s", prompt);
 		}
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 			}
 			else
 			{
-				getpath(args[1], args + 1);
+				_path(args[1], args + 1);
 			}
 		}
 		else
@@ -101,7 +101,7 @@ int main(int argc, char **argv)
 			wait(&status);
 		}
 
-		if (isstdfile)
+		if (is_file)
 		{
 			if (str != NULL)
 			{

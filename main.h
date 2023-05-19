@@ -14,6 +14,6 @@ extern char **environ;
 void get_env(void);
 char *getpath();
 char *getfullpath(char *filename, char *path);
-void path(char *filename, char **args);
+void _path(char *filename, char **args);
 
 #endif

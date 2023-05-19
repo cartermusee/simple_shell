@@ -1,5 +1,7 @@
 #include "main.h"
 
+
+
 /**
  * getpath - gets the PATH
  * Return: the path
@@ -46,12 +48,12 @@ char *getfullpath(char *filename, char *path)
 }
 
 /**
- * path - function that gets the path
+ * _path - function that gets the path
  * @filename : nem of file
  * @args: argument
  */
 
-void path(char *filename, char **args)
+void _path(char *filename, char **args)
 {
 	char *path = getpath();
 	char *fullpath = getfullpath(filename, path);
