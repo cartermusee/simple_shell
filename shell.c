@@ -73,8 +73,15 @@ int main(int argc, char **argv)
 
 		if (strcmp(args[1], "exit") == 0)
 		{
-			free(str);
-			exit(0);
+			if (argc > 2)
+			{
+				printf("error: no need for arguments\n");
+			}
+			else
+			{
+				free(str);
+				exit(0);
+			}
 		}
 		else if (strcmp(args[1], "env") == 0)
 		{
