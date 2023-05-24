@@ -57,6 +57,7 @@ int main(int argc, char **argv)
 
 		args[0] = argv[0];
 		token = strtok(str, " ");
+		i = 1;
 
 		while (token != NULL)
 		{
