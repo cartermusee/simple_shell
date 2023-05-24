@@ -26,6 +26,7 @@ int main(int argc, char **argv)
 		{
 			printf("%s", prompt);
 		}
+
 		fflush(stdout);
 		nread = getline(&str, &n, stdin);
 
@@ -42,15 +43,16 @@ int main(int argc, char **argv)
 				exit(EXIT_FAILURE);
 			}
 		}
-
 		else if (nread == 0)
 		{
 			continue;
 		}
+
 		if (strlen(str) == 1)
 		{
 			continue;
 		}
+
 		str[strcspn(str, "\n")] = 0;
 
 		args[0] = argv[0];
@@ -61,10 +63,12 @@ int main(int argc, char **argv)
 			args[i++] = token;
 			token = strtok(NULL, " ");
 		}
+
 		if (i == 1)
 		{
 			continue;
 		}
+
 		args[i] = NULL;
 
 		if (strcmp(args[1], "exit") == 0)
@@ -77,7 +81,9 @@ int main(int argc, char **argv)
 			get_env();
 			continue;
 		}
+
 		pid = fork();
+
 		if (pid < 0)
 		{
 			perror("error due fork");
@@ -119,10 +125,12 @@ int main(int argc, char **argv)
 			}
 		}
 	}
+
 	if (str != NULL)
 	{
 		free(str);
 		str = NULL;
 	}
+
 	return (0);
 }
