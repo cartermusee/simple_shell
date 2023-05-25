@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 	int i = 1;
 	char *args[MAX_ARGS] = {NULL};
 	int is_file = !isatty(fileno(stdin));
+	int exit_stat;
 	(void)argc;
 
 	while (1)
@@ -74,8 +75,17 @@ int main(int argc, char **argv)
 
 		if (strcmp(args[1], "exit") == 0)
 		{
-			free(str);
-			exit(0);
+			if (i > 2)
+			{
+				exit_stat = atoi(args[2]);
+				free(str);
+				exit(exit_stat);
+			}
+			else
+			{
+				free(str);
+				exit(0);
+			}
 		}
 		else if (strcmp(args[1], "env") == 0)
 		{
