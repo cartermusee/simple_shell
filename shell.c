@@ -112,6 +112,16 @@ int main(int argc, char **argv)
 			_unsetenv(args[2]);
 			continue;
 		}
+		else if (strcmp(args[1], "cd") == 0)
+		{
+			if (i > 3)
+			{
+				fprintf(stderr, "invalid no. of arguments");
+				continue;
+			}
+			_directory(i == 3 ? args[2] : NULL);
+			continue;
+		}
 
 		pid = fork();
 
