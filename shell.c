@@ -92,6 +92,26 @@ int main(int argc, char **argv)
 			get_env();
 			continue;
 		}
+		else if (strcmp(args[1], "setenv") == 0)
+		{
+			if (i != 4)
+			{
+				fprintf(stderr, "invalid no. of arguments for setenv\n");
+				continue;
+			}
+			_setenv(args[2], args[3], 1);
+			continue;
+		}
+		else if (strcmp(args[1], "unsetenv") == 0)
+		{
+			if (i != 3)
+			{
+				fprintf(stderr, "invalid no. of arguments for unsetenv\n");
+				continue;
+			}
+			_unsetenv(args[2]);
+			continue;
+		}
 
 		pid = fork();
 

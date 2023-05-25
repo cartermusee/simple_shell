@@ -15,5 +15,7 @@ void get_env(void);
 char *getpath();
 char *getfullpath(char *filename, char *path);
 void _path(char *filename, char **args);
+int _setenv(const char *name, const char *value, int overwrite);
+int _unsetenv(const char *name);
 
 #endif
