@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 	char *args[MAX_ARGS] = {NULL};
 	int is_file = !isatty(fileno(stdin));
 	int exit_stat;
+	size_t len;
 	(void)argc;
 
 	while (1)
@@ -53,11 +54,21 @@ int main(int argc, char **argv)
 				continue;
 			}
 		}
-		if (strlen(str) == 1)
+		len = strlen(str);
+		while (len > 0 && (str[len - 1] == '\n' || str[len - 1] == ' ' || str[len - 1] == '\t'))
+		{
+			str[len - 1] = '\0';
+			len --;
+		}
+		while (*str && (*str == ' ' || *str == '\t'))
+		{
+			str++;
+			len--;
+		}
+		if (len == 0)
 		{
 			continue;
-		}
-			
+		}	
 
 		str[strcspn(str, "\n")] = 0;
 
