@@ -119,7 +119,7 @@ int main(int argc, char **argv)
 				fprintf(stderr, "invalid no. of arguments");
 				continue;
 			}
-			_directory(i == 3 ? args[2] : NULL);
+			_cd(i == 3 ? args[2] : NULL);
 			continue;
 		}
 

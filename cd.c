@@ -1,42 +1,48 @@
 #include "main.h"
 /**
- * _directory - function which gets direc
- * @path:pointer to path
- * Return:zero
+ * directorychange - changes directory
+ * @direc:directory path
  */
-int _directory(const char *path)
+void directorychange(char *direc)
 {
-	char wd[1024];
-	const char *dir;
+	char currentdir[1024];
 
-	if (path == NULL || strcmp(path, "-") == 0)
+	if (!direc)
 	{
-		dir = getenv("HOME");
-		if (dir == NULL)
-		{
-			fprintf(stderr, "unable to change to home directory\n");
-			return (-1);
-		}
-		if (chdir(dir) != 0)
-		{
-			perror("chdir failed");
-			return (-1);
-		}
+		direc = getenv("HOME");
 	}
-	else
+	else if (!strcmp(direc, "-"))
 	{
-		if (chdir(path) != 0)
-		{
-			perror("chdir failed");
-			return (-1);
-		}
+		direc = getenv("OLDPWD");
 	}
-	if (getcwd(wd, sizeof(wd)) == NULL)
+	if (!direc)
 	{
-		perror("due to getcwd");
-		return (-1);
+		fprintf(stderr, "cd:directory not there\n");
+		return;
 	}
-	_setenv("PWD", wd, 1);
-
-	return (0);
+	if (chdir(direc))
+	{
+		perror("error cd");
+		return;
+	}
+	if (!getcwd(currentdir, sizeof(currentdir)))
+	{
+		perror("error due to cd");
+		return;
+	}
+	if (setenv("OLDPWD", getenv("PWD"), 1) || setenv("PWD", currentdir, 1))
+	{
+		perror("error");
+	}
 }
+
+/**
+ * _cd - cals change directory
+ * @direc:directory
+ */
+
+void _cd(char *direc)
+{
+	directorychange(direc);
+}
+

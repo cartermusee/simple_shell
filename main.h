@@ -24,11 +24,6 @@ char *getfullpath(char *filename, char *path);
 void _path(char *filename, char **args);
 int _setenv(const char *name, const char *value, int overwrite);
 int _unsetenv(const char *name);
-int _directory(const char *path);
-void setalias(const char *name, const char *value);
-const char *getvalue(const char *name);
-int aliasindex(const char *name);
-void printalias(void);
-void removealias(const char *name);
-void aliascommands(char **args, int numargs);
+void _cd(char *direc);
+void directorychange(char *direc);
 #endif
