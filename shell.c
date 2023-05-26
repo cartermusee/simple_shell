@@ -26,33 +26,38 @@ int main(int argc, char **argv)
 		if (!is_file)
 		{
 			printf("%s", prompt);
+			fflush(stdout);
 		}
-
-		fflush(stdout);
-		nread = getline(&str, &n, stdin);
-
-		if (nread == -1)
+		if (is_file)
 		{
-			if (feof(stdin))
-			{
-				printf("\n");
-				break;
-			}
-			else
-			{
-				perror("error due to eof");
-				exit(EXIT_FAILURE);
-			}
+			nread = getline(&str, &n, stdin);
 		}
-		else if (nread == 0)
+		else
 		{
-			continue;
+			nread = getline(&str, &n, stdin);
+			if (nread == -1)
+			{
+				if (feof(stdin))
+				{
+					printf("\n");
+					break;
+				}
+				else
+				{
+					perror("error due to eof");
+					exit(EXIT_FAILURE);
+				}
+			}
+			else if (nread == 0)
+			{
+				continue;
+			}
 		}
-
 		if (strlen(str) == 1)
 		{
 			continue;
 		}
+			
 
 		str[strcspn(str, "\n")] = 0;
 
