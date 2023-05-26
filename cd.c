@@ -45,4 +45,3 @@ void _cd(char *direc)
 {
 	directorychange(direc);
 }
-
