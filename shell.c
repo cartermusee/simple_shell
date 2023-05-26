@@ -122,16 +122,6 @@ int main(int argc, char **argv)
 			_directory(i == 3 ? args[2] : NULL);
 			continue;
 		}
-		else if (strcmp(args[1], "alias") == 0)
-		{
-			if (i == 2)
-			{
-				printalias();
-				continue;
-			}
-			aliascommands(args, i);
-			continue;
-		}
 
 		pid = fork();
 
