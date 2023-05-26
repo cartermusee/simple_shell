@@ -19,7 +19,6 @@ int main(int argc, char **argv)
 	char *args[MAX_ARGS] = {NULL};
 	int is_file = !isatty(fileno(stdin));
 	int exit_stat;
-	size_t len;
 	(void)argc;
 
 	while (1)
@@ -27,46 +26,28 @@ int main(int argc, char **argv)
 		if (!is_file)
 		{
 			printf("%s", prompt);
-			fflush(stdout);
 		}
-		if (is_file)
+		fflush(stdout);
+		nread = getline(&str, &n, stdin);
+		if (nread == -1)
 		{
-			nread = getline(&str, &n, stdin);
-		}
-		else
-		{
-			nread = getline(&str, &n, stdin);
-			if (nread == -1)
+			if (feof(stdin))
 			{
-				if (feof(stdin))
-				{
-					printf("\n");
-					break;
-				}
-				else
-				{
-					perror("error due to eof");
-					exit(EXIT_FAILURE);
-				}
+				printf("\n");
+				break;
 			}
-			else if (nread == 0)
+			else
 			{
-				continue;
+				perror("error due to eof");
+				exit(EXIT_FAILURE);
 			}
 		}
-		len = strlen(str);
-		while (len > 0 && (str[len - 1] == '\n' || str[len - 1] == ' ' || str[len - 1] == '\t'))
+		else if (nread == 0)
 		{
-			str[len - 1] = '\0';
-			len --;
+			continue;
 		}
-		while (*str && (*str == ' ' || *str == '\t'))
-		{
-			str++;
-			len--;
-		}
-		if (len == 0)
-		{
+		if (strlen(str) == 1)
+		{	
 			continue;
 		}	
 
