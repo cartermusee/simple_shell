@@ -115,10 +115,7 @@ int main(int argc, char **argv)
 				fprintf(stderr, "invalid no. of arguments for setenv\n");
 				continue;
 			}
-			if (_setenv(args[2], args[3], 1) == -1)
-			{
-				fprintf(stderr, "failed to set environment\n");
-			}
+			_setenv(args[2], args[3], 1);
 			continue;
 		}
 		else if (strcmp(args[1], "unsetenv") == 0)
@@ -128,10 +125,7 @@ int main(int argc, char **argv)
 				fprintf(stderr, "invalid no. of arguments for unsetenv\n");
 				continue;
 			}
-			if (_unsetenv(args[2]) == -1)
-			{
-				fprintf(stderr, "failed to unset environment\n");
-			}
+			_unsetenv(args[2]);
 			continue;
 		}
 		else if (strcmp(args[1], "cd") == 0)
