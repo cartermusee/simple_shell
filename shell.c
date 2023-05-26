@@ -19,8 +19,6 @@ int main(int argc, char **argv)
 	char *args[MAX_ARGS] = {NULL};
 	int is_file = !isatty(fileno(stdin));
 	int exit_stat = 0;
-	char *command;
-	char *arg_token;
 	(void)argc;
 
 	while (1)
@@ -57,33 +55,24 @@ int main(int argc, char **argv)
 
 		args[0] = argv[0];
 		token = strtok(str, "; ");
-		/*i = 1;*/
+		i = 1;
 		while (token != NULL)
 		{
-			args[0] = argv[0];
-			i = 1;
+			args[i++] = token;
+			token = strtok(NULL, " ");	
+		}
 
-			command = token;
-			arg_token = strtok(command, " ");
-			while (arg_token != NULL)
+		if (i == 1)
+		{
+			continue;
+		}
+
+		args[i] = NULL;
+		if (strcmp(args[1], "exit") == 0)
+		{
+			if (i > 2)
 			{
-				args[i++] = token;
-				token = strtok(NULL, " ");
-			}
-
-			if (i == 1)
-			{
-				token = strtok(NULL, ";");
-				continue;
-			}
-
-			args[i] = NULL;
-
-			if (strcmp(args[1], "exit") == 0)
-			{
-				if (i > 2)
-				{
-					exit_stat = atoi(args[2]);
+				exit_stat = atoi(args[2]);
 				free(str);
 				exit(exit_stat);
 			}
@@ -165,9 +154,6 @@ int main(int argc, char **argv)
 				exit(EXIT_FAILURE);
 			}
 		}
-		token = strtok(NULL, ";");
-		}
-
 		if (is_file)
 		{
 			if (str != NULL)
