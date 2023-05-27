@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 	int i = 1;
 	char *args[MAX_ARGS] = {NULL};
 	int is_file = !isatty(fileno(stdin));
-	int exit_stat = 0;
+	int exit_stat;
 	(void)argc;
 
 	while (1)
