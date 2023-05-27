@@ -54,7 +54,7 @@ int main(int argc, char **argv)
 		str[strcspn(str, "\n")] = 0;
 
 		args[0] = argv[0];
-		token = strtok(str, "; ");
+		token = strtok(str, " ");
 		i = 1;
 		while (token != NULL)
 		{
