@@ -39,7 +39,8 @@ char *getfullpath(char *filename, char *path)
 
 		if (access(fullpath, F_OK) == 0)
 		{
-			return (fullpath);
+			free(fullpath);
+			return (NULL);
 		}
 		free(fullpath);
 		direc = strtok(NULL, ":");
@@ -68,6 +69,7 @@ void _path(char *filename, char **args)
 	else
 	{
 		fprintf(stderr, "%s: %d: %s: not found\n", args[-1], 1, filename);
+		free(fullpath);
 		exit(EXIT_FAILURE);
 	}
 }

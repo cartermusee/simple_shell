@@ -28,4 +28,5 @@ void _cd(char *direc);
 void directorychange(char *direc);
 ssize_t mygetline(char **ptr, size_t *n, int df);
 void *fcrealloc(void *ptr, size_t lsize, size_t nsize);
+extern char *lineptr;
 #endif
