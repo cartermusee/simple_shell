@@ -141,18 +141,6 @@ int main(int argc, char **argv)
 		else
 		{
 			wait(&status);
-			if (WIFEXITED(status))
-			{
-				exit_stat = WEXITSTATUS(status);
-				if (exit_stat != 0)
-				{
-					exit(exit_stat);
-				}
-			}
-			else
-			{
-				exit(EXIT_FAILURE);
-			}
 		}
 		if (is_file)
 		{
