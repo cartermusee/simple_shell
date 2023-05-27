@@ -10,13 +10,6 @@
 #include <errno.h>
 
 #define MAX_ARGS 2400
-#define ALIAS 1024
-#define ALIAS_LENGTH 1024
-
-struct Alias {
-	char name[ALIAS_LENGTH];
-	char value[ALIAS_LENGTH];
-};
 extern char **environ;
 void get_env(void);
 char *getpath();
@@ -28,5 +21,4 @@ void _cd(char *direc);
 void directorychange(char *direc);
 ssize_t mygetline(char **ptr, size_t *n, int df);
 void *fcrealloc(void *ptr, size_t lsize, size_t nsize);
-extern char *lineptr;
 #endif
