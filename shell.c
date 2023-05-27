@@ -47,9 +47,9 @@ int main(int argc, char **argv)
 			continue;
 		}
 		if (strlen(str) == 1)
-		{	
+		{
 			continue;
-		}	
+		}
 
 		str[strcspn(str, "\n")] = 0;
 
@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 		while (token != NULL)
 		{
 			args[i++] = token;
-			token = strtok(NULL, " ");	
+			token = strtok(NULL, " ");
 		}
 
 		if (i == 1)
