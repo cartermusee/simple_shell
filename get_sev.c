@@ -3,7 +3,7 @@
  * _setenv - setenv function
  * @name:name of variable
  * @value:variable value
- * overwrite - integer
+ * @overwrite: integer
  * Return:zero
  */
 int  _setenv(const char *name, const char *value, int overwrite)
