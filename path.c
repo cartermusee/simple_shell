@@ -68,7 +68,6 @@ void _path(char *filename, char **args)
 	else
 	{
 		fprintf(stderr, "%s: %d: %s: not found\n", args[-1], 1, filename);
-		free(fullpath);
 		exit(EXIT_FAILURE);
 	}
 }
