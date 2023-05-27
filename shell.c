@@ -46,6 +46,10 @@ int main(int argc, char **argv)
 		{
 			continue;
 		}
+		if (str[0] == '#' || str[0] == '\n')
+		{
+			continue;
+		}
 		if (strlen(str) == 1)
 		{
 			continue;
