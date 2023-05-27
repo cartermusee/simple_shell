@@ -39,8 +39,7 @@ char *getfullpath(char *filename, char *path)
 
 		if (access(fullpath, F_OK) == 0)
 		{
-			free(fullpath);
-			return (NULL);
+			return (fullpath);
 		}
 		free(fullpath);
 		direc = strtok(NULL, ":");
